@@ -1,0 +1,22 @@
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  # Enable to run on-demand, so you can debug workflow easily
+  workflow_dispatch:
+
+jobs:
+  scala-steward:
+    runs-on: ubuntu-latest
+    name: Launch Scala Steward
+    steps:
+      # Need to access repos-file
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Launch Scala Steward
+        # https://github.com/scala-steward-org/scala-steward-action
+        uses: scala-steward-org/scala-steward-action@v2
+        with:
+          # set ADMIN_GITHUB_TOKEN secret in the repository
+          github-token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          author-email: githubaccount@example.com
+          repos-file: 'repos.md'
