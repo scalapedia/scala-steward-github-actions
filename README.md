@@ -1,1 +1,1 @@
-# scala-steward-github-action
+# scala-steward-github-actions
